@@ -1,0 +1,21 @@
+        <div class="row">
+            <div class="col-md-12">
+            <h3>Comments by author</h3>
+                <table class="table table-striped table-bordered">
+                    <tr>     
+                        <th>Author</th>
+                        <th>Comment</th>
+                        <th>Rating</th>
+                        <th>Movie</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="ac in ac">
+                        <td>{{ac.author}}</td>
+                        <td>{{ac.comment}}</td>
+                        <td>{{ac.rating}}</td>
+                        <td>{{ac.movie}}</td>
+                        <td><button class="btn btn-primary" role="button" ng-click="deleteComment(ac.commentId)">Delete</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>

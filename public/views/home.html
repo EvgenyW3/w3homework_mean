@@ -1,0 +1,64 @@
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary button-holder" data-toggle="modal" data-target="#add">
+              Add new
+            </button>
+
+
+        <div class="row">
+                <div class="col-sm-6 col-md-4" ng-repeat="movie in movies">
+                    <div class="thumbnail">
+                      <img src="/images/{{movie.fileName}}" alt="...">
+                      <div class="caption">
+                        <h3><a href="/movie/{{movie._id}}" >{{movie.title}}</a></h3>
+                        <p><b>Rating:</b> {{movie.rating}}/5
+                        </p>
+                        <p><b>Genre:</b> {{movie.genre}}</p>
+                        <p><b>Description:</b></p>
+                        <p>{{movie.description}}</p>
+                        <p><button class="btn btn-primary" role="button" ng-click="deleteMovie(movie._id)">Delete</button></p>
+                      </div>
+                    </div>
+                </div>
+                      <div class="modal fade" id="add" tabindex="-1" role="dialog">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Add new movie</h4>
+                              </div>
+                              <div class="modal-body">
+                              <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
+                                <form enctype="multipart/form-data">
+                                    <div class="form-group">
+                                      <label for="image">Movie image</label>
+                                      <input type="file" class="form-control" name="image" id="image" ng-model="formData.fileName" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="title">Movie title</label>
+                                      <div class="alert alert-danger" role="alert" ng-show="titleError">{{titleError}}</div>
+                                      <input type="text" class="form-control" name="title" ng-model="formData.title" placeholder="Title" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="genre">Movie genre</label>
+                                      <div class="alert alert-danger" role="alert" ng-show="genreError">{{genreError}}</div>
+                                      <input type="text" class="form-control" name="genre" ng-model="formData.genre" placeholder="Genre" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="genre">Movie description</label>
+                                      <div class="alert alert-danger" role="alert" ng-show="descriptionError">{{descriptionError}}</div>
+                                      <input type="text" class="form-control" name="description" ng-model="formData.description" placeholder="Description" required>
+                                    </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button class="btn btn-primary" ng-click="createMovie()">Save changes</button>
+
+                              </div>
+                            </div><!-- /.modal-content -->
+                          </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
