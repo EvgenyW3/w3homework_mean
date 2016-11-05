@@ -7,12 +7,16 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 	*/
 	//Empty scope object for form data
 	$scope.formData = {};
-	//Initializing star-rating after DOM is ready, unfortunatly this doesn't for on new just created items:((
+	/*
+	 *Initializing star-rating after DOM is ready, 
+	 unfortunatly this doesn't work for just created items and after delete:((
+	 So I decided to cut it off until I come up with some fix
 	angular.element(document).ready(function () {
         setTimeout(function(){
 		        $('.movieRating').rating({displayOnly: true, step: 0.1, size:'xs'});
 		      }, 30);;
     });
+*/
 
 	$http.get('/movies')
 		.success(function(data) {
