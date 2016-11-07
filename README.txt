@@ -11,9 +11,8 @@ New featurs:
 
 Problems that need fixes:
 
-- Star-rating on main page doesn't work on newly created movies and after delete. Update is needed after those actions, so I dicided to temporarily cut it of. Works well when going to particular movie's page and adding a comment
 - Image upload doesn't work yet.
-- I didn't use directives nor servies. I know it's a bad practise, but I tried to keep thing simple for myself since it's only my 3rd day working with AngularJS
+- I didn't use directives nor servies, all calls to API are in controllers. I know it's a bad practise, but I tried to keep thing simple for myself since it's only my 3rd day working with AngularJS
 
 ########################################################################################################################################
 
