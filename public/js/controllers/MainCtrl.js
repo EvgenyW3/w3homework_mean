@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $http, Upload) {
 
 
 	/* All AngulaJS magic runs here!
@@ -70,17 +70,19 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 	};
 
 	$scope.createMovie = function() {
+		//passing filename to the server
+		$scope.formData.fileName = $scope.formData.file.name;
 		$http.post('/movies', $scope.formData)
 		.success(function(data) {
-			$scope.formData = {};
 			//If successed clear all error messages
 			$scope.titleError = '';
 			$scope.genreError = '';
 			$scope.descriptionError = '';
 			$scope.movies.push(data);
+			$scope.upload($scope.formData.file);
 			$scope.stars();
 			$('.modal').modal('toggle');
-			console.log(data);
+			$scope.formData = {};
 		})
 		.error(function(data){
 		//Simple validation check for each input
@@ -93,8 +95,6 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		}else{
 			console.log('Error: ' + data);
 		}
-			$scope.error = 'All fields are required!';
-			console.log('Error: ' + data);
 		})
 	};
 
@@ -111,5 +111,18 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			console.log('Error: ' + data);
 		});
 	};
+
+	//ng-file-upload directive is injected to file upload
+	// upload on file select or drop
+    $scope.upload = function (file) {
+    	console.log(file);
+        Upload.upload({
+            url: '/movies',
+            headers : {
+            	'Content-Type': 'multipart/form-data'
+            },
+            data: {file: file}
+        });
+    };
 
 });

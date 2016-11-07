@@ -33,8 +33,10 @@ router.get('/movies', function(req, res, next) {
 });
 
 /* POST create a new movie */
-router.post('/movies', function(req, res, next) {
+router.post('/movies', upload.single('file'), function(req, res, next) {
+  console.log(req.body.fileName);
 	var movie = new Movie(req.body);
+  //movie.fileName = req.file.path;
 	movie.save(function(err, movie){
 		if(err) return next(err);
 		res.json(movie);
