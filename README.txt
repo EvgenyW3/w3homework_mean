@@ -10,11 +10,9 @@ New featurs:
 - Cutted server.js(app.js), since I used a template for MEAN-stack apps
 
 Problems that need fixes:
+- I didn't use directives(one external directive is used for file upload ng-file-upload) nor servies, all calls to API are in controllers. I know it's a bad practise, but I tried to keep thing simple for myself since it's only my 3rd day working with AngularJS
 
-- Image upload doesn't work yet.
-- I didn't use directives nor servies, all calls to API are in controllers. I know it's a bad practise, but I tried to keep thing simple for myself since it's only my 3rd day working with AngularJS
-
-########################################################################################################################################
+################################################################################################
 
 In project directory run:
 
