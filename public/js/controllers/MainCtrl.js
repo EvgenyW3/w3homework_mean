@@ -7,16 +7,14 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 	*/
 	//Empty scope object for form data
 	$scope.formData = {};
-	/*
-	 *Initializing star-rating after DOM is ready, 
-	 unfortunatly this doesn't work for just created items and after delete:((
-	 So I decided to cut it off until I come up with some fix
-	angular.element(document).ready(function () {
-        setTimeout(function(){
-		        $('.movieRating').rating({displayOnly: true, step: 0.1, size:'xs'});
-		      }, 30);;
+
+	//Initializing star-rating for movie
+	//Finaly made it to work with newly created movies
+    $scope.stars = function() {
+    angular.element(document).ready(function () {
+    	$('.movieRating').rating({displayOnly: true, step: 0.1, size:'xs'});
     });
-*/
+    };
 
 	$http.get('/movies')
 		.success(function(data) {
@@ -34,6 +32,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
             //adding each movie's rating in our array
             $scope.movies[i].rating = rating.toFixed(1);
             }
+            $scope.stars();
 			console.log(data);
 		})
 		.error(function(data){
@@ -51,17 +50,18 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			$scope.movies = data;
 			//Rating magic from above for new newly created movies
             //Looping through all movies
-            for(var i in movies){
+            for(var i in $scope.movies){
                 //Creating a variable that takes a rating of each movie
                 var rating = 0;
                 //Looping throguh all movie's comments and getting ratings
-                for(var j in movies[i].comments){
+                for(var j in $scope.movies[i].comments){
                     //Summarizing all ratings and deviding with comments length
-                    rating += movies[i].comments[j].rating / movies[i].comments.length;
+                    rating += $scope.movies[i].comments[j].rating / $scope.movies[i].comments.length;
                     }
             //adding each movie's rating in our array
-            movies[i].rating = rating.toFixed(1);
+            $scope.movies[i].rating = rating.toFixed(1);
             }
+            $scope.stars();
 			console.log(data);
 		})
 		.error(function(data){
@@ -78,6 +78,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			$scope.genreError = '';
 			$scope.descriptionError = '';
 			$scope.movies.push(data);
+			$scope.stars();
 			$('.modal').modal('toggle');
 			console.log(data);
 		})
