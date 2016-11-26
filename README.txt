@@ -8,9 +8,7 @@ New featurs:
 - Rating count logic moved from back-end to AngularJS
 - Small difference in models, since I tried to use .populate to implement connections between documents
 - Cutted server.js(app.js), since I used a template for MEAN-stack apps
-
-Problems that need fixes:
-- I didn't use directives(one external directive is used for file upload ng-file-upload) nor servies, all calls to API are in controllers. I know it's a bad practise, but I tried to keep thing simple for myself since it's only my 3rd day working with AngularJS
+- Unit tests for API layer using Chai and ChaiHttp
 
 ################################################################################################
 
@@ -25,3 +23,9 @@ Movie's title is a link to comments page.
 Author's name is a link to page where all this author comments are listed
 
 Tested in Google Chrome browser
+
+For test You will need to install mocha globaly on your machine to run mocha command from your node console
+
+npm install -g mocha
+
+And after this run mocha in project directory
